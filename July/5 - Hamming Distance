@@ -1,0 +1,22 @@
+def hammingDistance(self, x: int, y: int) -> int:
+        
+        #A pythonic solution: return bin(x^y)[2:].count("1")
+        
+        x = bin(x)[2:]
+        y = bin(y)[2:]
+        
+        xl = len(x)
+        yl = len(y)
+        m = max(xl,yl)
+        
+        if(m == xl):
+            y = ''.join(['0']*(xl - yl)) + y
+        else:
+            x = ''.join(['0']*(yl - xl)) + x
+            
+        count = 0
+        for a,b in zip(x,y):
+            if(a!=b):
+                count+=1
+        
+        return count
