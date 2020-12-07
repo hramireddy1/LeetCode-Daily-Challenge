@@ -1,0 +1,30 @@
+class Solution(object):
+    def generateMatrix(self, n):
+        """
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        m = [[0]*n for _ in range(n)]
+        top = 0
+        left = 0
+        bottom = n-1
+        right = n-1
+        val = 1
+        while(val <= n*n):
+            for i in range(left,right+1):
+                m[top][i] = val
+                val+=1
+            top+=1
+            for i in range(top,bottom+1):
+                m[i][right] = val
+                val+=1
+            right-=1
+            for i in reversed(range(left,right+1)):
+                m[bottom][i] = val
+                val+=1
+            bottom-=1
+            for i in reversed(range(top,bottom+1)):
+                m[i][left] = val
+                val+=1
+            left+=1
+        return m
