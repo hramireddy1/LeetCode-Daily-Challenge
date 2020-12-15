@@ -1,0 +1,25 @@
+class Solution(object):
+    def sortedSquares(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        
+        #***One liner***
+        #return sorted(map(lambda x:x*x,nums))
+        
+        #***Two Pointer Solution***
+        start = 0
+        end = len(nums)-1
+        i = len(nums)-1
+        res = [0 for x in nums]
+        while(start <= end):
+            if(abs(nums[start]) >= abs(nums[end])):
+                res[i] = nums[start]**2
+                i-=1
+                start+=1
+            else:
+                res[i] = nums[end]**2
+                i-=1
+                end-=1
+        return res
