@@ -1,0 +1,18 @@
+class Solution(object):
+    def fourSumCount(self, A, B, C, D):
+        """
+        :type A: List[int]
+        :type B: List[int]
+        :type C: List[int]
+        :type D: List[int]
+        :rtype: int
+        """
+        res = 0
+        cnt1 = Counter(a+b for a,b in product(A,B))
+        cnt2 = Counter(c+d for c,d in product(C,D))
+        for cnt in cnt1:
+            if -cnt in cnt2:
+                res += cnt1[cnt]*cnt2[-cnt]
+        return res
+                
+        
