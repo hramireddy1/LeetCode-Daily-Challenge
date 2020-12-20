@@ -1,0 +1,37 @@
+class Solution(object):
+    def decodeAtIndex(self, S, K):
+        lens = [0]
+        n = len(S)
+        for ch in S:
+            if ch.isdigit():
+                lens.append(lens[-1]*int(ch))
+            else:
+                lens.append(lens[-1]+1)
+        
+        for i in range(n,-1,-1):
+            K = K%lens[i]
+            if K==0 and S[i-1].isalpha():
+                return S[i-1]
+    
+        """
+        i = 0
+        res = ''
+        for ch in S:
+            if(i < K):
+                if ch.isalpha():
+                    res+=ch
+                    print(res)
+                    i+=1
+                    print(i)
+                elif ch.isnumeric():
+                    i+=len(res)*(int(ch)-1)
+                    res = res*int(ch)
+                    print(res)
+                    print(i)
+            else:
+                return res[K-1]
+        return res[K-1]
+        """
+        
+            
+        
