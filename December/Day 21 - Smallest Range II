@@ -1,0 +1,12 @@
+class Solution:
+    def smallestRangeII(self, A: List[int], K: int) -> int:
+        A.sort()
+        maxi = A[-1]
+        mini = A[0]
+        n = len(A)
+        diff = maxi-mini
+        if diff< K:
+            return diff
+        for i in range(n-1):
+            diff = min(diff, max(A[i]+K,maxi-K) - min(mini+K, A[i+1]-K))
+        return diff
