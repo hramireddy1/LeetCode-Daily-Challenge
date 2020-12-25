@@ -1,0 +1,13 @@
+class Solution:
+    def findDiagonalOrder(self, matrix: List[List[int]]) -> List[int]:
+        if not matrix:
+            return []
+        rows = len(matrix)
+        cols = len(matrix[0])
+        d = defaultdict(list)
+        for i,j in product(range(rows),range(cols)):
+            d[i+j].append(matrix[i][j])
+        res = []
+        for lvl in range(rows+cols):
+            res+=d[lvl][::lvl%2*2-1]
+        return res
