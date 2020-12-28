@@ -1,0 +1,18 @@
+class Solution:
+    def reachNumber(self, target: int) -> int:
+        target = abs(target)
+        n = 0
+        position=0
+        #Add until position is greater than target and equals target+k
+        #If k is even, we can subtract one of the numbers we added to match target and we will return n
+        #else we add until the difference k is even
+        while True:
+            print(position)
+            if position < target or (target-position)%2==1:
+                n+=1
+                position+=n
+            else:
+                return n
+        
+        
+ 
