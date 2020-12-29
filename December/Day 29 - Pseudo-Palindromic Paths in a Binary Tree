@@ -1,0 +1,42 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    res = 0
+    def pseudoPalindromicPaths (self, root: TreeNode) -> int:
+        freq = defaultdict(int)
+        print(freq)
+        self.helper(root,freq)
+        return self.res
+    def helper(self,root, freq):
+        if not root:
+            return
+        freq[root.val]+=1
+        print(freq)
+        
+        if not root.left and not root.right:
+            print('At leaf')
+            if(self.containsPalindrome(freq)):
+                print('incrementing')
+                self.res+=1
+        
+        self.helper(root.left, freq)
+        self.helper(root.right,freq)
+        freq[root.val]-=1
+    
+    def containsPalindrome(self,freq):
+        print('checking')
+        twoOdd = False
+        for x in freq.values():
+            if(x%2!=0):
+                if twoOdd:
+                    return False
+                else:
+                    twoOdd = True
+        return True
+        
+    
+        
