@@ -1,0 +1,16 @@
+class Solution:
+    def canFormArray(self, arr: List[int], pieces: List[List[int]]) -> bool:
+        res = []
+        for x in arr:
+            for piece in pieces:
+                if x in piece:
+                    res.extend(piece)
+                    pieces.remove(piece)
+                    if(arr[:len(res)] != res):
+                        return False
+                    break
+                else:
+                    continue
+        if res==arr:
+            return True
+        return False
