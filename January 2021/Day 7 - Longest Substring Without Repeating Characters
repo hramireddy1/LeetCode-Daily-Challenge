@@ -1,0 +1,14 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        left,right,res,n = 0,0,0,len(s)
+        window = set()
+        while left<n and right<n:
+            if s[right] not in window:
+                window.add(s[right])
+                right+=1
+                res = max(res, right-left)
+            else:
+                window.remove(s[left])
+                left+=1
+        return res
+        
