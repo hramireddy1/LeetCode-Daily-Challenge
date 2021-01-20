@@ -1,0 +1,18 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        if len(s)%2!=0:
+            return False
+        d = {'}':'{',']':'[',')':'('}
+        st = []
+        for ch in s:
+            if st and ch in d:
+                if st[-1]==d[ch]:
+                    st.pop()
+                else:
+                    return False
+            else:
+                st.append(ch)
+        return len(st)==0
+                    
+        
+        
