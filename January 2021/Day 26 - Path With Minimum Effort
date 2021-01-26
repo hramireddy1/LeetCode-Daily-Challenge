@@ -1,0 +1,24 @@
+class Solution:
+    def minimumEffortPath(self, heights: List[List[int]]) -> int:
+        m,n = len(heights),len(heights[0])
+        moves = [[1,0],[-1,0],[0,1],[0,-1]]
+        
+        def dfs(limit, x, y):
+            visited.add((x,y))
+            for dx,dy in moves:
+                if 0<=x+dx<m and 0<=y+dy<n and (dx+x,dy+y) not in visited:
+                    if(abs(heights[x][y] - heights[dx+x][dy+y]) <= limit):
+                        dfs(limit,dx+x,dy+y)
+                        
+        beg, end = -1, max(max(heights,key=max))
+        while beg+1 < end:
+            mid = (beg+end)//2
+            visited = set()
+            dfs(mid, 0, 0)
+            if (m-1,n-1) in visited:
+                end = mid
+            else:
+                beg = mid
+        return end
+            
+        
