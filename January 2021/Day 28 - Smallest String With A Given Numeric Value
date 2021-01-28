@@ -1,0 +1,10 @@
+class Solution:
+    def getSmallestString(self, n: int, k: int) -> str:    
+        res = [97 for i in range(n)]
+        k-=n
+        while(k>0):
+            res[n-1] += min(25,k)
+            n -= 1
+            k -= min(25,k)
+        return ''.join([chr(x) for x in res])
+        
