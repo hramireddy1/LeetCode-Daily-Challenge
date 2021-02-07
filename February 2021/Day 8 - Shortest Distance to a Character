@@ -1,0 +1,11 @@
+class Solution:
+    def shortestToChar(self, s: str, c: str) -> List[int]:
+        def helper(ch, di):
+            n= len(s)
+            res,tmp = [0]*n, -n
+            for i in range(n)[::di]:
+                if s[i]==c:
+                    tmp = i
+                res[i] = abs(i-tmp)
+            return res
+        return [min(x,y) for x,y in zip(helper(c,1),helper(c,-1))]
