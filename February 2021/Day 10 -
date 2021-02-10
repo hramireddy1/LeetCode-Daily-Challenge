@@ -1,0 +1,34 @@
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
+# Linear Time O(n)
+# Constant Space O(1)
+
+class Solution:
+    def copyRandomList(self, head: 'Node') -> 'Node':
+        dummy = Node(-1)
+        dummy.next = head
+        curr = head
+        while curr:
+            tmp = Node(curr.val)
+            tmp.next = curr.next
+            curr.next = tmp
+            curr = tmp.next
+            
+        curr = head
+        while curr:
+            curr.next.random = curr.random.next if curr.random else None
+            curr = curr.next.next
+            
+        curr, nxt = dummy, head
+        while nxt:
+            curr.next = nxt.next
+            curr = nxt
+            nxt = curr.next
+        return dummy.next
+       
