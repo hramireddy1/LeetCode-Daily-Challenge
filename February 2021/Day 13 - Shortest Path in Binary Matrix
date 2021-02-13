@@ -1,0 +1,15 @@
+class Solution:
+    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
+        delta_steps = [(-1,-1),(-1,1),(1,-1),(1,1),(-1,0),(0,-1),(1,0),(0,1)]
+        n = len(grid)
+        visited = set()
+        q = deque([(1,0,0)]) if grid[0][0]==0 else deque()
+        while q:
+            steps,x,y = q.popleft()
+            if x==y==n-1:
+                return steps
+            for dx,dy in delta_steps:
+                if 0<=x+dx<n and 0<=y+dy<n and (x+dx,y+dy) not in visited and grid[x+dx][y+dy]==0:
+                    visited.add((x+dx,y+dy))
+                    q.append((steps+1,x+dx,y+dy))
+        return -1
