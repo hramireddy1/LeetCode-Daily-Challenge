@@ -1,0 +1,17 @@
+class Solution:
+    def isBipartite(self, graph: List[List[int]]) -> bool:
+        colors = [0]*len(graph) #0-no color, 1-red, 2-green
+        def matches_node_color(node, node_color):
+            if colors[node]!=0:
+                return colors[node] == node_color
+            colors[node] = node_color
+            for neighb in graph[node]:
+                if not matches_node_color(neighb,-1*node_color):
+                    return False
+            return True
+        for node in range(len(graph)):
+            if colors[node]==0 and not matches_node_color(node,1):
+                return False
+        return True
+                
+        
