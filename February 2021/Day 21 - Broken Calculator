@@ -1,0 +1,13 @@
+class Solution:
+    def brokenCalc(self, X: int, Y: int) -> int:
+        if(Y < X):
+            return X-Y
+        if X==Y:
+            return 0 
+        if(Y%2==0):
+            return 1 + self.brokenCalc(X,Y//2)
+        else:
+            return 1 + self.brokenCalc(X,Y+1)
+            
+            
+        
