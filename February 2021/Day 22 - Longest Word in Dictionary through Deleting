@@ -1,0 +1,19 @@
+class Solution:
+    def findLongestWord(self, s: str, d: List[str]) -> str:
+        def isSub(word, string):
+            word_i,string_i = 0,0
+            while word_i < len(word) and string_i < len(string):
+                if word[word_i] == string[string_i]:
+                    word_i+=1
+                string_i+=1
+                
+            return word_i == len(word)
+        
+        res = ''
+        for word in d:
+            if isSub(word,s):
+                res = min(res, word, key = lambda x:(-len(x),x))
+        return res
+        
+   
+    
