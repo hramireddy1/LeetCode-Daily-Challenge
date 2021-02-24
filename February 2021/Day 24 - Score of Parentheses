@@ -1,0 +1,31 @@
+#O(n) - time
+#O(1) - space
+class Solution:
+    def scoreOfParentheses(self, S: str) -> int:
+        res,depth = 0,0
+        for i,c in enumerate(S):
+            if c=='(':
+                depth+=1
+                if S[i+1]==')':
+                    res += 1 << (depth-1)
+            else:
+                depth-=1
+        return res
+        
+
+
+#Alternative using stack
+class Solution:
+    def scoreOfParentheses(self, S: str) -> int:
+        arr = list(S)
+        stack = []
+        for char in arr:
+            if char == "(":
+                stack.append(char)
+                continue
+            inter = 0
+            while stack[-1] != "(":
+                inter += stack.pop()
+            stack.pop()
+            stack.append(max(2*inter, 1))
+        return sum(stack)
