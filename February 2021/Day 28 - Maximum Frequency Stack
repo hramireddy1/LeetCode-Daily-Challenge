@@ -1,0 +1,26 @@
+class FreqStack:
+
+    def __init__(self):
+        self.freq = Counter()
+        self.stacks = defaultdict(list)
+        self.max_freq = 0
+        
+
+    def push(self, x: int) -> None:
+        self.freq[x] = self.freq[x] + 1
+        self.max_freq = max(self.max_freq,self.freq[x])
+        self.stacks[self.freq[x]].append(x)
+        
+
+    def pop(self) -> int:
+        r = self.stacks[self.max_freq].pop()
+        self.freq[r] -=1
+        if not self.stacks[self.max_freq]:
+            self.max_freq -= 1
+        return r
+        
+        
+# Your FreqStack object will be instantiated and called as such:
+# obj = FreqStack()
+# obj.push(x)
+# param_2 = obj.pop()
