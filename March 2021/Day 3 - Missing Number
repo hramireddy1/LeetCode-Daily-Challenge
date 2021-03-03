@@ -1,0 +1,7 @@
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        for i,x in enumerate(sorted(nums)):
+            if(i!=x):
+                return i
+        return i+1
+        
