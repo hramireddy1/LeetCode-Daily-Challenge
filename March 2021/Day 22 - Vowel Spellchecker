@@ -1,0 +1,18 @@
+class Solution:
+    def spellchecker(self, wordlist: List[str], queries: List[str]) -> List[str]:
+        res = []
+        devowel = lambda word: "".join('*' if c in 'aeiou' else c for c in word.lower())
+        d1 = {word.lower():word for word in wordlist[::-1]}
+        d2 = {devowel(word):word for word in wordlist[::-1]}
+        for query in queries:
+            if query in wordlist:
+                res.append(query)
+            elif query.lower() in d1:
+                res.append(d1[query.lower()])
+            elif devowel(query) in d2:
+                res.append(d2[devowel(query)])
+            else:
+                res.append("")
+        return res
+                
+        
