@@ -1,0 +1,13 @@
+class Solution:
+    def advantageCount(self, A: List[int], B: List[int]) -> List[int]:
+        A = deque(sorted(A, reverse=True))
+        B = sorted([(num,i) for i,num in enumerate(B)], reverse=True)
+        res = [-1]*len(A)
+        for num,i in B:
+            if A[0] > num:
+                res[i] = A.popleft()
+            else:
+                res[i] = A.pop()
+        return res
+        
+         
