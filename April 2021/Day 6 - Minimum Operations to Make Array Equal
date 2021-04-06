@@ -1,0 +1,12 @@
+class Solution:
+    def minOperations(self, n: int) -> int:
+        '''
+        Sum of A.P
+        (n/2)(2a+(n-1)*d)
+        If n is odd, there are same number of operations that need to be performed on both sides with one step having 2, two steps having 4 etc to reach the midpoint.
+        Ex. 2+4+6+(n-1)/2 => (n^2-1)/4
+        If Even,
+        Ex. 1+3+5+n/2 => (n^2)/4
+        '''
+        return n*n//4
+        
