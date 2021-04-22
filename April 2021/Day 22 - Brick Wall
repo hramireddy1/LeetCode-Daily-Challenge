@@ -1,0 +1,8 @@
+class Solution:
+    def leastBricks(self, wall: List[List[int]]) -> int:
+        edges = defaultdict(int)
+        for row in wall:
+            for i in accumulate(row[:-1]):
+                edges[i]+=1
+        return len(wall) - max(edges.values(), default=0)
+        
