@@ -1,0 +1,5 @@
+class Solution:
+    def countBinarySubstrings(self, s: str) -> int:
+        counts = [len(list(j)) for i,j in groupby(s)]
+        return sum([min(counts[i],counts[i+1]) for i in range(len(counts)-1)])
+        
