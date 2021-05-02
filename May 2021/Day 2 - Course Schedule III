@@ -1,0 +1,15 @@
+class Solution:
+    def scheduleCourse(self, courses: List[List[int]]) -> int:
+        curr_day = 0
+        heap = []
+        courses = sorted(courses, key=lambda x: x[1])
+        for duration, lastday in courses:
+            curr_day += duration
+            heapq.heappush(heap,-duration)
+            while curr_day > lastday:
+                curr_day += heapq.heappop(heap)
+        return len(heap)
+     
+            
+            
+   
