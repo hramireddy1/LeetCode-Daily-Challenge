@@ -1,0 +1,17 @@
+class Solution:
+    def isPossible(self, target: List[int]) -> bool:
+        total = sum(target)
+        heap = []
+        for num in target: heappush(heap, -num)
+ 
+        while -heap[0] > 1:
+            num = -heapq.heappop(heap)
+            rest_sum = total - num
+            if num < rest_sum or rest_sum==0 or (num % rest_sum==0 and rest_sum != 1):
+                return False
+            num = num%rest_sum
+            total = num + rest_sum 
+            heapq.heappush(heap, -num)
+        return True  
+            
+        
