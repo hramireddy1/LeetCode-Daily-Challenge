@@ -1,0 +1,13 @@
+class Solution:
+    def countPrimes(self, n: int) -> int:
+        seen = [0]*n
+        count = 0
+        for num in range(2,n):
+            if seen[num]:
+                continue
+            count += 1
+            s = num*num
+            while(s < n):
+                seen[s] = 1
+                s += num
+        return count
