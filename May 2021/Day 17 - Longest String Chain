@@ -1,0 +1,17 @@
+class Solution:
+    def longestStrChain(self, words: List[str]) -> int:
+        words_set = set(words)
+        
+        @lru_cache(None)
+        def dp(word):
+            tmp = 1
+            if word not in words_set:
+                return 0
+            for i in range(len(word)):
+                predecessor = word[:i] + word[i+1:]
+                if predecessor in words_set:
+                    tmp = max(tmp, dp(predecessor) + 1)
+            return tmp
+        return max(dp(word) for word in words)
+                    
+        
