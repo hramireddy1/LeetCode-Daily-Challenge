@@ -1,0 +1,16 @@
+class Solution:
+    def findAndReplacePattern(self, words: List[str], pattern: str) -> List[str]:
+        def normalize(word):
+            seen = {}
+            rep = 1
+            res = ""
+            for c in word:
+                if c not in seen:
+                    seen[c] = rep
+                    rep +=1 
+                res+= str(seen[c])
+            return res
+        norm_pattern = normalize(pattern)
+        return [word for word in words if normalize(word)==norm_pattern]
+                
+        
