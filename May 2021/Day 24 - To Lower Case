@@ -1,0 +1,11 @@
+class Solution:
+    def toLowerCase(self, s: str) -> str:
+        res=""
+        for ch in s:
+            x = ord(ch)
+            if x <= 90 and x>=65:
+                res += chr(ord(ch)+32)
+            else:
+                res += ch
+        return res
+        
