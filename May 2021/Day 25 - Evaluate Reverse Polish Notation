@@ -1,0 +1,20 @@
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        st = []
+        def operate(a,b,op):
+            if op=='+': return a+b
+            if op=='-': return b-a
+            if op=='*': return a*b
+            if op=='/': return int(b/a)
+            
+        for token in tokens:
+            if token in "+-/*":
+                x = st.pop()
+                y = st.pop()
+                st.append(operate(x,y,token))
+            else:
+                st.append(int(token))
+        return st[-1]
+                
+            
+        
