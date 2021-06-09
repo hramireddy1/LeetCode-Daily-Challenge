@@ -1,0 +1,10 @@
+class Solution:
+    def maxResult(self, nums: List[int], k: int) -> int:
+        dp = [-math.inf]*len(nums)
+        dp[0] = nums[0]
+        for i in range(1,len(dp)):
+            for j in range(max(i-k,0),i):
+                dp[i] = max(dp[i], dp[j] + nums[i])
+        return dp[-1]
+            
+        
