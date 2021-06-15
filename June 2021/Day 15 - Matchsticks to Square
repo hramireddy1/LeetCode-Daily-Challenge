@@ -1,0 +1,26 @@
+class Solution:
+    def makesquare(self, matchsticks: List[int]) -> bool:
+        matchsticks = sorted(matchsticks, reverse=True)
+        self.res = False
+        p, n = sum(matchsticks), len(matchsticks)
+        if p % 4 != 0: 
+            return False
+        else:
+            side = p / 4
+        def dfs(s1, s2, s3, s4, k):
+            if k == n or self.res:
+                if s1 == s2 == s3 == s4:
+                    self.res = True
+                return
+            l = matchsticks[k]
+            if s1 + l <= side:
+                dfs(s1 + l, s2, s3, s4, k + 1)
+            if s2 + l <= side:
+                dfs(s1, s2 + l, s3, s4, k + 1)
+            if s3 + l <= side:
+                dfs(s1, s2, s3 + l, s4, k + 1)
+            if s4 + l <= side:
+                dfs(s1, s2, s3, s4 + l, k + 1)
+        dfs(0, 0, 0, 0, 0)
+        return self.res
+        
