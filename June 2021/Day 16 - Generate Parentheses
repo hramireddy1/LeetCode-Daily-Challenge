@@ -1,0 +1,14 @@
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        def backtracking(open, close, s):
+            if n==close:
+                res.append(s)
+                return
+            if open < n:
+                backtracking(open+1, close, s+"(")
+            if close < open:
+                backtracking(open, close+1, s+")")
+        res = []
+        backtracking(0,0,"")
+        return res
+        
