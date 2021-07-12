@@ -1,0 +1,14 @@
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        d = {}
+        for c1,c2 in zip(s, t):
+            if c1 in d:
+                if d[c1]==c2:
+                    continue
+                else:
+                    return False
+            elif c2 in d.values():
+                return False
+            d[c1] = c2
+        return True
+        
