@@ -1,0 +1,9 @@
+class Solution:
+    def customSortString(self, order: str, str: str) -> str:
+        cnt = Counter(str)
+        res = ""
+        for ch in order:
+            if ch in cnt:
+                res += ch*cnt[ch]
+                cnt.pop(ch)
+        return res + "".join(ch*count for ch,count in cnt.items())
