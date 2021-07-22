@@ -1,0 +1,13 @@
+class Solution:
+    def partitionDisjoint(self, nums: List[int]) -> int:
+        leftmax = globalmax = nums[0]
+        partition = 0
+        for i in range(1, len(nums)):
+            globalmax = max(globalmax, nums[i])
+            if nums[i] < leftmax:
+                leftmax = globalmax
+                partition = i
+        return partition+1
+            
+            
+        
