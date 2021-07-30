@@ -1,0 +1,25 @@
+class MapSum:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.d = dict()
+        
+
+    def insert(self, key: str, val: int) -> None:
+        self.d[key] = val
+        
+
+    def sum(self, prefix: str) -> int:
+        self.res = 0
+        for k in self.d.keys():
+            if k.startswith(prefix):
+                self.res += self.d[k]
+        return self.res
+
+
+# Your MapSum object will be instantiated and called as such:
+# obj = MapSum()
+# obj.insert(key,val)
+# param_2 = obj.sum(prefix)
