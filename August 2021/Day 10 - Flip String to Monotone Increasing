@@ -1,0 +1,12 @@
+class Solution:
+    def minFlipsMonoIncr(self, s: str) -> int:
+        flips = 0
+        counter = 0
+        for ch in s:
+            if ch=='1':
+                counter += 1
+            else:
+                flips += 1
+            flips = min(counter,flips)
+        return flips
+        
